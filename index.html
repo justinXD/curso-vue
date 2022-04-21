@@ -8,16 +8,23 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">
-        {{ text }}
-    </div>
+    <div id="app"></div>
     <script>
         const vm = Vue.createApp({
             data(){
                 return{
-                    text: "Hola Vue!"
+                    //text: "Hola Vue!"
+                    img: "https://images.pexels.com/photos/11780920/pexels-photo-11780920.jpeg?cs=srgb&dl=pexels-ozan-%C3%A7ulha-11780920.jpg&fm=jpg"
                 };
-            }
+            },
+            template: `<img v-bind:src="img" v-bind:alt="img">`
+            //template: `<div v-once v-text="text"></div>`
+            //v-text es una directiva para agregar el text a nuetro HTML, v-once es otra directiva para dejar fijo el v-text
+            //v-html es otra directiva que podemos usar en caso de que text tenga sintaxis de html y el navegador no la interprete como texto plano
+            //v-bind nos permite modificar los valores de los atributos nativos de HTML o de componentes
+            /*podemos hacer que src y alt sean variables en lugar de fijos
+            para esto hariamos ["src"] o [attr] y agregar attr: "src", al return
+            la , es importante porque estamos trabajando con json"*/
         }).mount("#app");
         console.log(vm)
     </script>
