@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventos</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const vm = Vue.createApp({
+            data(){
+                return{
+                    counter: 0,
+                    //evt: "submit"
+                };
+            },
+            methods:{
+                /*increment(){
+                    this.counter++
+                }*/
+                submit(e){
+                    //e.preventDefault()
+                    this.counter++
+                }
+            },
+            template: `<form v-on:submit.prevent="submit"><button>{{ counter }}</button></form>`
+            //v-on:keyup="increment" para eventos de teclado
+            //v-on:click="increment" evento de click
+            //v-on:click=[evt].prevent
+        }).mount("#app");
+    </script>
+    
+</body>
+</html>
