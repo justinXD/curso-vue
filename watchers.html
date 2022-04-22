@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reto 1</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const vm = Vue.createApp({
+            data(){
+                return{
+                    text: "Puerta Cerrada",
+                    open: false
+                };
+            },
+            watch:{
+                open(value){
+                    if (value) {
+                        this.text = "Puerta Abierta"
+                    } else{
+                        this.text = "Puerta Cerrada"
+                    }
+                }
+            },
+            computed:{
+                label(){
+                    return this.open ? "Cerrar" : "Abrir"
+                }
+            },
+            template: `<div>{{ text }}</div>
+            <button @click="open = !open">{{ label }}</button>`
+            /*el watcher nos sirve, como bien dice su nombre, para escuchar los cambios
+            en las variables o en la reactividad de un atributo pero que estos cambios
+            no se muestran en pantalla.
+            los argumentos value y old nos dicen el nuevo valor de la variable
+            y el antiguo valor de la variable respectivamente*/
+        }).mount("#app");
+    </script>
+</body>
+</html>

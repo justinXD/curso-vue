@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reto 1</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const vm = Vue.createApp({
+            data(){
+                return{
+                  text:  "hola vue!!" 
+                };
+            },
+            /*methods:{
+                    input(e){
+                    this.text = e.target.value
+                    }
+                },*/
+            template: `
+            <p>{{ text }}</p>
+            <input type="text" v-model="text"/>` //@ equivale a escribir v-on://el evento input nos hace cambios en tiempo real
+            //podemos sustituir el v-bind: con :. Los : son para los atributos y el @ es para los eventos
+            //podemos acortar codigo usando v-model="" en vez de usar v-on: y v-bind:
+        }).mount("#app");
+    </script>
+</body>
+</html>
