@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reto 1</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const vm = Vue.createApp({
+            data(){
+                return{
+                    text: "Accede a tu cuenta",
+                    open: false,
+                    username: "",
+                    posts: [{
+                        title: "titulo 1",
+                        description: "Que pasa ..."
+                    },
+                    {
+                        title: "titulo 2",
+                        description: "Que pasa ..."
+                    },
+                    {
+                        title: "titulo 3",
+                        description: "Que pasa ..."
+                    },
+                    {
+                        title: "titulo 4",
+                        description: "Que pasa ..."
+                    },
+                    {
+                        title: "titulo 5",
+                        description: "Que pasa ..."
+                    }]
+                    /*styles:{
+                        backgroundColor: "#eca1a6"
+                    }*/
+                };
+            },
+            watch:{
+                open(value){
+                    if (value) {
+                        this.text = "Cerrar sesión"
+                        //this.styles.backgroundColor = "#b5e7a0"
+                    } else{
+                        this.text = "Accede a tu cuenta";
+                        this.username = ""
+                        //this.styles.backgroundColor = "#eca1a6"
+                    }
+                }
+            },
+            computed:{
+                label(){
+                    return this.open ? "Salir" : "Acceder"
+                },
+                styles(){
+                    return this.open ? "open" : "closed"
+                }
+            },
+            template: `<div class="container" :class="styles">
+                        <h2>{{ text }}</h2>
+                        <div v-if="open">
+                            <p>Hola, {{ username }}</p>
+                            <div class="list">
+                                <div v-for="(item, i) in posts" :key="i" class="item">
+                                    <div class="title">{{ item.title }}</div>
+                                    <p>{{ item.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <!-- <label> username </label> -->
+                                <div>username</div>
+                            <input type="text" v-model="username">
+                        </div>
+                        <button @click="open = !open">
+                            <div v-if="!open">Acceder</div>
+                            <div v-else>Salir</div>
+                        </button>
+                    </div>`
+            /*el watcher nos sirve, como bien dice su nombre, para escuchar los cambios
+            en las variables o en la reactividad de un atributo pero que estos cambios
+            no se muestran en pantalla.
+            los argumentos value y old nos dicen el nuevo valor de la variable
+            y el antiguo valor de la variable respectivamente*/
+        }).mount("#app");
+    </script>
+    <style>
+        html, body {
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #app, .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        button {
+            margin-top: 24px;
+            border: none;
+            background-color: white;
+            padding: 8px 24px;
+            border-radius: 12px;
+        }
+        button:hover{
+            background-color: aqua;
+            cursor: pointer;
+        }
+        .closed {
+            background-color: #eca1a6;
+        }
+        .open {
+            background-color: #b5e7a0;
+        }
+        .list{
+            display: flex;
+            flex-direction: column;
+        }
+        .item{
+           border: 1px solid black; 
+        }
+        .title{
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</body>
+</html>
